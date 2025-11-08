@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mainframe Banking System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <nav class="mb-8">
+            <ul class="flex space-x-4">
+                <li><button class="nav-btn bg-blue-500 text-white px-4 py-2 rounded" data-page="dashboard">Dashboard</button></li>
+                <li><button class="nav-btn bg-blue-500 text-white px-4 py-2 rounded" data-page="new-account">New Account</button></li>
+                <li><button class="nav-btn bg-blue-500 text-white px-4 py-2 rounded" data-page="transaction">Transactions</button></li>
+            </ul>
+        </nav>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page">
+            <h2 class="text-2xl font-bold mb-4">Account Dashboard</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Account Number:</label>
+                    <input type="text" id="dashboard-account-no" class="mt-1 p-2 border rounded w-full">
+                </div>
+                <button onclick="checkBalance()" class="bg-blue-500 text-white px-4 py-2 rounded">Check Balance</button>
+                <div id="balance-display" class="mt-4"></div>
+            </div>
+        </div>
+
+        <!-- New Account Page -->
+        <div id="new-account-page" class="page hidden">
+            <h2 class="text-2xl font-bold mb-4">Create New Account</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Name:</label>
+                    <input type="text" id="new-name" class="mt-1 p-2 border rounded w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Account Number:</label>
+                    <input type="text" id="new-account-no" class="mt-1 p-2 border rounded w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Initial Deposit:</label>
+                    <input type="number" id="initial-deposit" class="mt-1 p-2 border rounded w-full">
+                </div>
+                <button onclick="createAccount()" class="bg-green-500 text-white px-4 py-2 rounded">Create Account</button>
+            </div>
+        </div>
+
+        <!-- Transaction Page -->
+        <div id="transaction-page" class="page hidden">
+            <h2 class="text-2xl font-bold mb-4">Transactions</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="mb-4">
+                    <label class="block text-gray-700">Account Number:</label>
+                    <input type="text" id="trans-account-no" class="mt-1 p-2 border rounded w-full">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700">Amount:</label>
+                    <input type="number" id="trans-amount" class="mt-1 p-2 border rounded w-full">
+                </div>
+                <div class="flex space-x-4">
+                    <button onclick="deposit()" class="bg-green-500 text-white px-4 py-2 rounded">Deposit</button>
+                    <button onclick="withdraw()" class="bg-red-500 text-white px-4 py-2 rounded">Withdraw</button>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-4">Transaction History</h3>
+                    <button onclick="loadTransactions()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Load Transactions</button>
+                    <div id="transaction-history" class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-2">Date</th>
+                                    <th class="px-4 py-2">Type</th>
+                                    <th class="px-4 py-2">Amount</th>
+                                    <th class="px-4 py-2">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
